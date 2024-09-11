@@ -71,7 +71,9 @@ Widget _buildUi() {
                 },
                 child: Text(
                   'Sigup Now',
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(
+                    color: Colors.blue,
+                  ),
                 ),
               )
             ],
@@ -90,9 +92,13 @@ Widget _Submitbutton() {
     child: Center(
       child: Container(
         width: 100,
-        height: 30,
+        height: 40,
         decoration: BoxDecoration(color: Colors.blue),
-        child: Center(child: Text('Login')),
+        child: Center(
+            child: Text(
+          'Login',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        )),
       ),
     ),
   );

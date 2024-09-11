@@ -23,6 +23,9 @@ class Authcontroller extends GetxController {
     Get.offAll(() => Homepage());
     if (userCredential != null) {
       user = userCredential.user;
+
+      emailcontroller.clear();
+      passwordcontroller.clear();
     } else {
       return null;
     }
@@ -39,6 +42,10 @@ class Authcontroller extends GetxController {
     if (userCredential != null) {
       user = userCredential.user;
       Get.offAll(() => Homepage());
+
+      emailcontroller.clear();
+      passwordcontroller.clear();
+      namecontroller.clear();
     } else {
       return null;
     }

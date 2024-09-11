@@ -51,11 +51,19 @@ class _HomepageState extends State<Homepage> {
             itemCount: users.length,
             itemBuilder: (context, index) {
               UserModel user = users[index].data();
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(user.pfp!),
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: ListTile(
+                  onTap: () {},
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(user.pfp!),
+                  ),
+                  title: Text(
+                    user.name!,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                title: Text(user.name!),
               );
             },
           );
