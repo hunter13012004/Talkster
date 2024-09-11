@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198401946125",
+    "project_id": "talkster-da6af",
+    "storage_bucket": "talkster-da6af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198401946125:android:23b9aed4b9d71b6980db44",
+        "android_client_info": {
+          "package_name": "com.example.talkster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvS-jKAIMoSFsVVfAopu01MzAw-02BvIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
