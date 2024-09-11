@@ -1,12 +1,12 @@
 import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talkster/Widget/Custom_text_feilds.dart';
 import 'package:talkster/controllers/authcontroller.dart';
+import 'package:talkster/controllers/databasecontroller.dart';
 import 'package:talkster/controllers/media_controller.dart';
 import 'package:talkster/controllers/storagecontroller.dart';
+import 'package:talkster/model/user_model.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,6 +18,7 @@ class RegisterPage extends StatefulWidget {
 var authcontroller = Get.put(Authcontroller());
 var mediacontroller = Get.put(MediaController());
 var storagecontroller = Get.put(Storagecontroller());
+var dbcontroller = Get.put(Databasecontroller());
 File? selectedimage;
 
 class _RegisterPageState extends State<RegisterPage> {
@@ -103,6 +104,17 @@ class _RegisterPageState extends State<RegisterPage> {
             uid: authcontroller.user!.uid, file: selectedimage!);
         print('Image upload success');
         print(userpfp);
+        print('Database Creation started ');
+        if (userpfp != null) {
+          await dbcontroller.createUserProfile(
+              usermodel: UserModel(
+                  name: authcontroller.namecontroller.text.trim(),
+                  uid: authcontroller.user!.uid,
+                  pfp: userpfp));
+          print('Databse Created successfully ');
+        } else {
+          return null;
+        }
       },
       child: Center(
         child: Container(

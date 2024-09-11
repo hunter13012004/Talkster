@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talkster/controllers/authcontroller.dart';
+import 'package:talkster/controllers/databasecontroller.dart';
+import 'package:talkster/model/user_model.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -10,6 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 var _authcontroller = Get.put(Authcontroller());
+var dbcontroller = Get.put(Databasecontroller());
 
 class _HomepageState extends State<Homepage> {
   @override
@@ -25,6 +28,40 @@ class _HomepageState extends State<Homepage> {
               icon: Icon(Icons.logout))
         ],
       ),
+      body: _buildUi(),
+    );
+  }
+
+  Widget _buildUi() {
+    return _chatlist();
+  }
+
+  Widget _chatlist() {
+    return StreamBuilder(
+      stream: dbcontroller.getUserProfiles(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Error No data Found'),
+          );
+        }
+        if (snapshot.hasData) {
+          final users = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              UserModel user = users[index].data();
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(user.pfp!),
+                ),
+                title: Text(user.name!),
+              );
+            },
+          );
+        }
+        return Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
